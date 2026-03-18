@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+
 @layer base {
   body {
     background-color: theme('colors.bg-primary');
@@ -10,4 +12,95 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: theme('fontFamily.headings');
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
 }
+
+@layer utilities {
+  .font-headings {
+    font-family: theme('fontFamily.headings');
+  }
+
+  /* Animated gradient text */
+  .text-gradient {
+    background: linear-gradient(135deg, #E8614D 0%, #7C5CBF 50%, #E8614D 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+  }
+
+  /* Soft mesh background */
+  .bg-mesh {
+    background-color: #F7F5F2;
+    background-image:
+      radial-gradient(at 20% 10%, rgba(232,97,77,0.12) 0px, transparent 50%),
+      radial-gradient(at 80% 20%, rgba(124,92,191,0.10) 0px, transparent 50%),
+      radial-gradient(at 50% 90%, rgba(245,168,142,0.12) 0px, transparent 50%);
+  }
+
+  /* Card hover lift */
+  .card-lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 40px rgba(232,97,77,0.15);
+  }
+
+  /* Pill tag */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: theme('colors.purple-light');
+    color: theme('colors.purple');
+    letter-spacing: 0.01em;
+  }
+
+  .tag-accent {
+    background: theme('colors.accent-glow');
+    color: theme('colors.accent-primary');
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #F7F5F2;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #E8E4DF;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #E8614D;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-fade-up { animation: fadeUp 0.5s ease forwards; }
